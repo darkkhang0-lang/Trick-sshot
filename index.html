@@ -5,20 +5,56 @@
     <title>System Error</title>
     <style>
         body {
-            background-color: #0078d7; /* Màu xanh của Windows */
+            background-color: #0078d7; /* Màu xanh chuẩn của Windows 10/11 */
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 10%;
-            cursor: none; /* Giấu con trỏ chuột để tăng độ thật */
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            padding: 12% 10% 10% 10%;
+            cursor: none; /* Giấu con trỏ chuột hoàn toàn */
+            user-select: none; /* Ngăn bôi đen chữ để không lộ */
+            overflow: hidden; /* Ẩn thanh cuộn trang */
         }
-        .smiley { font-size: 100px; }
-        .headline { font-size: 30px; margin-up: 20px; }
+        .smiley { 
+            font-size: 130px; 
+            font-weight: 300;
+            line-height: 1;
+        }
+        .headline { 
+            font-size: 28px; 
+            margin-top: 25px; 
+            line-height: 1.4;
+            font-weight: 400;
+            max-width: 900px;
+        }
+        .percentage {
+            font-size: 20px;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        /* Giấu dòng chữ troll bằng cách làm nó tàng hình trùng màu nền */
+        .hidden-troll {
+            margin-top: 50px;
+            color: #0078d7; 
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="smiley">:(</div>
-    <div class="headline">Máy tính của bạn đã gặp sự cố và cần phải khởi động lại.</div>
-    <p>Chúng tôi chỉ đang thu thập một số thông tin lỗi, sau đó chúng tôi sẽ tự động khởi động lại cho bạn.</p>
-    <p>0% Hoàn thành </p>
+    <div class="headline">PC của bạn đã gặp sự cố và cần khởi động lại. Chúng tôi chỉ đang thu thập một số thông tin lỗi, sau đó chúng tôi sẽ tự động khởi động lại cho bạn.</div>
+    
+    <!-- Phần trăm đứng yên để tạo cảm giác máy bị treo cứng -->
+    <div class="percentage">0% hoàn thành</div>
+
+    <!-- Dòng chữ này vẫn ở đây nhưng mắt thường không thể nhìn thấy -->
+    <div class="hidden-troll">Bạn đã bị troll rồi nhé! Nhấn Alt + F4 hoặc Ctrl + W để tắt trang web này.</div>
+
+    <script>
+        // Khi bạn bè bấm vào bất kỳ đâu trên màn hình, trang web sẽ tự động kích hoạt chế độ Toàn màn hình (Full Screen) để giấu thanh trình duyệt đi
+        document.addEventListener('click', function() {
+            var el = document.documentElement;
+            var rfs = el.requestFullscreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen;
+            if(rfs) rfs.call(el);
+        });
+    </script>
 </body>
 </html>
